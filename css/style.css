@@ -26,6 +26,15 @@ h1 {
     float: right;
 }
 
+.col1 {
+    min-width: 79px;
+}
+
+.lin1 {
+    min-height: 79px;
+    height: 79px;
+}
+
 #infos {
     background-color: silver;
     width: 400px;
@@ -39,5 +48,6 @@ h1 {
 }
 
 #table-game td {
-    border: 2px solid black;
+    border: 1px solid black;
+    padding: 0 !important;
 }
