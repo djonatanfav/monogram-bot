@@ -1,31 +1,64 @@
-function montarGame(quantidadeLinhas, quantidadeColunas){
+function renderGame(){
+
+    // Get Size
+    rows = arrayGame.length
+    cols = arrayGame[0].length
     
     // Correr linhas e colunas para criar a tabela
-    let stringTabela = '<table id="table-game">'
-    for(l=1;l<=(parseInt(quantidadeLinhas)+1);l++){
-        console.log('criando coluna', l)
-        stringTabela += '<tr>'
-            for(c=1;c<=(parseInt(quantidadeColunas)+1);c++){
-                console.log('criando linha', l)
-                if(c==1 && l==1){
-                    stringTabela += '<td>M</td>'
-                } else if(c==1){
-                    stringTabela += '<td class="col1"></td>'
-                } else if(l==1){
-                    stringTabela += '<td class="lin1"></td>'
+    let stringTable = '<table id="table-game">'
+    for(l=0;l<(parseInt(rows)+1);l++){
+        stringTable += '<tr>'
+            for(c=0;c<(parseInt(cols)+1);c++){
+                if(c==0 && l==0){
+                    stringTable += '<td>M</td>'
+                } else if(c==0){
+                    stringTable += '<td class="col1"></td>'
+                } else if(l==0){
+                    stringTable += '<td class="lin1"></td>'
                 } else {
-                    stringTabela += '<td class="quadrado-normal"></td>'
+                    let status = arrayGame[(l-1)][(c-1)]
+                    switch(status){
+                        case -1:
+                            stringTable += '<td class="square square-n"></td>'
+                            break;
+                        case 1:
+                            stringTable += '<td class="square square-y"></td>'
+                            break;
+                        default:
+                            stringTable += '<td class="square square-u"></td>'
+                            break;
+                    }
                 }
             }
-        stringTabela += '</tr>'
+        stringTable += '</tr>'
     }
-    stringTabela  += '</table>'
-    $('#game').html(stringTabela)
+    stringTable  += '</table>'
+    $('#game').html(stringTable)
 
     // Deixar o tamanho das colunas de acordo com os 420px restantes
-    let larguraQuadrado = 420 / parseInt(quantidadeColunas)
-    $('.quadrado-normal').css('width', larguraQuadrado)
+    let widthSquare = 420 / parseInt(cols)
+    $('.square').css('width', widthSquare)
 
-    let alturaQuadrado = (420 / parseInt(quantidadeLinhas)) - 1
-    $('.quadrado-normal').css('height', alturaQuadrado)
+    let heightSquare = (420 / parseInt(rows)) - 1
+    $('.square').css('height', heightSquare)
+}
+
+
+function createGame(rows, cols){
+    // Reset Game
+    arrayGame = []
+
+    // Create Game Data
+    for(r=0;r<rows;r++){
+        let arrayRow = []
+        for(c=0;c<cols;c++){
+            arrayRow.push(0)
+        }
+        arrayGame.push(arrayRow)
+    }
+
+    // Check
+    console.log(arrayGame)
+
+    renderGame()
 }

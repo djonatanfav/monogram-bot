@@ -2,9 +2,9 @@ $(function(){
     
 })
 
-function salvarConfiguracoes(){
-    let quantidadeColunas = $('#qtd-colunas').val()
-    let quantidadeLinhas  = $('#qtd-linhas').val()
+function safeConf(){
+    let cols = $('#qtd-colunas').val()
+    let rows  = $('#qtd-linhas').val()
 
-    montarGame(quantidadeLinhas, quantidadeColunas)
+    createGame(rows, cols)
 }
